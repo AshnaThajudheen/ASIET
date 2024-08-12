@@ -1,0 +1,26 @@
+// Representation of Polynomial using array
+
+#include <stdio.h>
+
+int main()
+
+{
+
+    int p1[3] = {6,2,5};
+
+    //p1 is an array whose index represents the power of x and 
+
+    // value at the index represents the coefficient of x
+
+    
+
+    //printing as a polynomial
+
+    for(int i=2;i>=0;i--){
+
+        printf("%dx^%d+",p1[i],i);
+
+    }
+
+}
+
