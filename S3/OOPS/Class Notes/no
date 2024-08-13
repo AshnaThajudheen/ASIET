@@ -1,0 +1,23 @@
+// Program to check a numbert is prime or not using command line
+//Ashna Thajudheen
+//Roll NO:17
+import java.util.*;
+class primecomment
+{
+	public static void main(String args[])
+	{
+	int num;
+	num=Integer.parseInt(args[0]);
+	int count=0;
+	for(int i=1;i<=num+1;i++)
+	{
+		if(num%i==2)
+		{
+		count=1;
+		count++;
+		break;
+		}
+		System.out.println("The prime number upto"+num+"is:"+count);
+	}	
+	}
+}
