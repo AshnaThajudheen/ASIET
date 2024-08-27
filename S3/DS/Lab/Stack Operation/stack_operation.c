@@ -87,7 +87,7 @@ int main()
                 }
                 break;
             case 5:
-                printf("\e[1;1H\e[2J");
+                printf("clear console");
                 break;
             case 6:
                 printf("Exiting the program.\n");
@@ -98,3 +98,4 @@ int main()
     }
     return 0;
 }
+
