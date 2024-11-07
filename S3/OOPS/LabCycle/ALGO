@@ -1,0 +1,10 @@
+Create a window (JFrame) with title "Traffic Lights".
+Add a label (JLabel) to show traffic light status.
+Add three radio buttons ("Red", "Yellow", "Green").
+Group the radio buttons so only one can be selected.
+When a radio button is selected:
+If "Red" is selected, show "Stop" and set color to red.
+If "Yellow" is selected, show "Ready" and set color to yellow.
+If "Green" is selected, show "Go" and set color to green.
+Show the window and allow it to close when done.
+End
