@@ -1,0 +1,195 @@
+student@dl-17:~/Ashna_os$ date
+Thursday 09 January 2025 11:53:31 AM IST
+student@dl-17:~/Ashna_os$ date +%m
+01
+student@dl-17:~/Ashna_os$ date +%h
+Jan
+student@dl-17:~/Ashna_os$ date +%y
+25
+student@dl-17:~/Ashna_os$ date +%M
+54
+student@dl-17:~/Ashna_os$ 
+student@dl-17:~/Ashna_os$ date +%h
+Jan
+student@dl-17:~/Ashna_os$ date +%H
+11
+student@dl-17:~/Ashna_os$ date +%M
+54
+student@dl-17:~/Ashna_os$ 
+student@dl-17:~/Ashna_os$ date +%S
+59
+student@dl-17:~/Ashna_os$ date +%s
+1736403904
+student@dl-17:~/Ashna_os$ cal
+    January 2025      
+Su Mo Tu We Th Fr Sa  
+          1  2  3  4  
+ 5  6  7  8  9 10 11  
+12 13 14 15 16 17 18  
+19 20 21 22 23 24 25  
+26 27 28 29 30 31     
+                      
+student@dl-17:~/Ashna_os$ cal 2005
+                            2005
+      January               February               March          
+Su Mo Tu We Th Fr Sa  Su Mo Tu We Th Fr Sa  Su Mo Tu We Th Fr Sa  
+                   1         1  2  3  4  5         1  2  3  4  5  
+ 2  3  4  5  6  7  8   6  7  8  9 10 11 12   6  7  8  9 10 11 12  
+ 9 10 11 12 13 14 15  13 14 15 16 17 18 19  13 14 15 16 17 18 19  
+16 17 18 19 20 21 22  20 21 22 23 24 25 26  20 21 22 23 24 25 26  
+23 24 25 26 27 28 29  27 28                 27 28 29 30 31        
+30 31                                                             
+
+       April                  May                   June          
+Su Mo Tu We Th Fr Sa  Su Mo Tu We Th Fr Sa  Su Mo Tu We Th Fr Sa  
+                1  2   1  2  3  4  5  6  7            1  2  3  4  
+ 3  4  5  6  7  8  9   8  9 10 11 12 13 14   5  6  7  8  9 10 11  
+10 11 12 13 14 15 16  15 16 17 18 19 20 21  12 13 14 15 16 17 18  
+17 18 19 20 21 22 23  22 23 24 25 26 27 28  19 20 21 22 23 24 25  
+24 25 26 27 28 29 30  29 30 31              26 27 28 29 30        
+                                                                  
+
+        July                 August              September        
+Su Mo Tu We Th Fr Sa  Su Mo Tu We Th Fr Sa  Su Mo Tu We Th Fr Sa  
+                1  2      1  2  3  4  5  6               1  2  3  
+ 3  4  5  6  7  8  9   7  8  9 10 11 12 13   4  5  6  7  8  9 10  
+10 11 12 13 14 15 16  14 15 16 17 18 19 20  11 12 13 14 15 16 17  
+17 18 19 20 21 22 23  21 22 23 24 25 26 27  18 19 20 21 22 23 24  
+24 25 26 27 28 29 30  28 29 30 31           25 26 27 28 29 30     
+31                                                                
+
+      October               November              December        
+Su Mo Tu We Th Fr Sa  Su Mo Tu We Th Fr Sa  Su Mo Tu We Th Fr Sa  
+                   1         1  2  3  4  5               1  2  3  
+ 2  3  4  5  6  7  8   6  7  8  9 10 11 12   4  5  6  7  8  9 10  
+ 9 10 11 12 13 14 15  13 14 15 16 17 18 19  11 12 13 14 15 16 17  
+16 17 18 19 20 21 22  20 21 22 23 24 25 26  18 19 20 21 22 23 24  
+23 24 25 26 27 28 29  27 28 29 30           25 26 27 28 29 30 31  
+30 31                                                             
+student@dl-17:~/Ashna_os$ cal 07 2005
+     July 2005        
+Su Mo Tu We Th Fr Sa  
+                1  2  
+ 3  4  5  6  7  8  9  
+10 11 12 13 14 15 16  
+17 18 19 20 21 22 23  
+24 25 26 27 28 29 30  
+31                    
+student@dl-17:~/Ashna_os$ echo "Hi"
+Hi
+student@dl-17:~/Ashna_os$ ls
+cal.sh  factorial.sh  oddeven.sh  palindrome.sh  sumdigit.sh
+student@dl-17:~/Ashna_os$ ls -l
+total 20
+-rwxrwxr-x 1 student student 434 Jan  9 11:49 cal.sh
+-rwxrwxr-x 1 student student 136 Jan  9 11:50 factorial.sh
+-rwxrwxr-x 1 student student 115 Jan  9 10:00 oddeven.sh
+-rwxrwxr-x 1 student student 273 Jan  9 11:08 palindrome.sh
+-rwxrwxr-x 1 student student 157 Jan  9 10:57 sumdigit.sh
+student@dl-17:~/Ashna_os$ ls -t
+factorial.sh  cal.sh  palindrome.sh  sumdigit.sh  oddeven.sh
+student@dl-17:~/Ashna_os$ ls -u
+factorial.sh  cal.sh  palindrome.sh  oddeven.sh  sumdigit.sh
+student@dl-17:~/Ashna_os$ ls -s
+total 20
+4 cal.sh  4 factorial.sh  4 oddeven.sh  4 palindrome.sh  4 sumdigit.sh
+student@dl-17:~/Ashna_os$ ls -r
+sumdigit.sh  palindrome.sh  oddeven.sh  factorial.sh  cal.sh
+student@dl-17:~/Ashna_os$ ls -f
+palindrome.sh  ..  cal.sh  factorial.sh  oddeven.sh  .  sumdigit.sh
+student@dl-17:~/Ashna_os$ ls -s
+total 20
+4 cal.sh  4 factorial.sh  4 oddeven.sh  4 palindrome.sh  4 sumdigit.sh
+student@dl-17:~/Ashna_os$ ls -h
+cal.sh  factorial.sh  oddeven.sh  palindrome.sh  sumdigit.sh
+student@dl-17:~/Ashna_os$ ls [a-m]*
+cal.sh  factorial.sh
+student@dl-17:~/Ashna_os$ ls [f]*
+factorial.sh
+student@dl-17:~/Ashna_os$ man
+What manual page do you want?
+For example, try 'man man'.
+student@dl-17:~/Ashna_os$ man Unix commands
+No manual entry for commands
+student@dl-17:~/Ashna_os$ man Unix commands
+No manual entry for commands
+student@dl-17:~/Ashna_os$ man echo
+student@dl-17:~/Ashna_os$ whoami
+student
+student@dl-17:~/Ashna_os$ uptime
+ 11:57:33 up  2:05,  1 user,  load average: 0.04, 0.14, 0.16
+student@dl-17:~/Ashna_os$ uname
+Linux
+student@dl-17:~/Ashna_os$ hostname
+dl-17
+student@dl-17:~/Ashna_os$ bc
+bc 1.07.1
+Copyright 1991-1994, 1997, 1998, 2000, 2004, 2006, 2008, 2012-2017 Free Software Foundation, Inc.
+This is free software with ABSOLUTELY NO WARRANTY.
+For details type `warranty'. 
+quit
+student@dl-17:~/Ashna_os$ cat factorial.sh
+echo "Enter a number:"
+read num
+fact=1
+for (( i=1 ; i<=num ; i++ )); do
+fact=$(( fact * i ))
+done
+echo "The factorial of $num is $fact"
+student@dl-17:~/Ashna_os$ cat num1.sh n.sh
+cat: num1.sh: No such file or directory
+echo "welcome"
+student@dl-17:~/Ashna_os$ cat num.sh n.sh
+echo "Hello"
+echo "welcome"
+student@dl-17:~/Ashna_os$ grep echo cal.sh
+echo "Enter first Number:"
+echo "Enter second Number:"
+echo "Select your choice(1-4)"
+echo "1)Addition"
+echo "2)substraction"
+echo "3)multiplication"
+echo "4)division"
+1) echo "Addition"
+2) echo "Substraction"
+3) echo "multiplication"
+echo "division" 
+*) echo "Invalid Choice"
+echo "Result is $result"
+student@dl-17:~/Ashna_os$ rm n.sh
+student@dl-17:~/Ashna_os$ touch n.sh
+student@dl-17:~/Ashna_os$ cp factorial.sh n.sh
+student@dl-17:~/Ashna_os$ cp n.sh sample.sh
+student@dl-17:~/Ashna_os$ cut -c sample.sh
+cut: invalid byte/character position ‘sample.sh’
+Try 'cut --help' for more information.
+student@dl-17:~/Ashna_os$ cut echo sample.sh
+cut: you must specify a list of bytes, characters, or fields
+Try 'cut --help' for more information.
+student@dl-17:~/Ashna_os$ head sample.sh
+echo "Enter a number:"
+read num
+fact=1
+for (( i=1 ; i<=num ; i++ )); do
+fact=$(( fact * i ))
+done
+echo "The factorial of $num is $fact"
+student@dl-17:~/Ashna_os$ tail sample.sh
+echo "Enter a number:"
+read num
+fact=1
+for (( i=1 ; i<=num ; i++ )); do
+fact=$(( fact * i ))
+done
+echo "The factorial of $num is $fact"
+student@dl-17:~/Ashna_os$ chmod +x sample.sh
+student@dl-17:~/Ashna_os$ chmod -wx sample.sh
+student@dl-17:~/Ashna_os$ chmod +rw sample.sh
+student@dl-17:~/Ashna_os$ wc -l cal.sh
+26 cal.sh
+student@dl-17:~/Ashna_os$ wl -w cal.sh
+wl: command not found
+student@dl-17:~/Ashna_os$ wc -w cal.sh
+68 cal.sh
+student@dl-17:~/Ashna_os$ wc -c cal.sh
+434 cal.sh
