@@ -1,0 +1,54 @@
+#include<stdio.h>
+
+struct process {
+    int pid;
+    char p[10];
+    int AT; 
+    int BT; 
+};
+
+void getprocess(struct process p[100], int n) {
+    for (int i = 0; i < n; i++) {
+        printf("Enter The %d Process PID: ", i + 1);
+        scanf("%d", &p[i].pid);
+        printf("Enter the Arrival Time: ");
+        scanf("%d", &p[i].AT);
+        printf("Enter the Burst Time: ");
+        scanf("%d", &p[i].BT);
+    }
+}
+
+void sort(struct process p[100], int n) {
+    struct process temp;
+    for (int i = 0; i < n - 1; i++) {
+        for (int j = 0; j < n - i - 1; j++) {
+            if (p[j].AT > p[j + 1].AT) { 
+                temp = p[j];
+                p[j] = p[j + 1];
+                p[j + 1] = temp;
+            }
+        }
+    }
+}
+
+void printSortedProcesses(struct process p[100], int n) {
+    printf("\nSorted Processes (by Arrival Time):\n");
+    printf("PID\tArrival Time\tBurst Time\n");
+    for (int i = 0; i < n; i++) {
+        printf("%d\t%d\t\t%d\n", p[i].pid, p[i].AT, p[i].BT);
+    }
+}
+
+int main() {
+    int n;
+    printf("Enter the number of processes: ");
+    scanf("%d", &n);
+
+    struct process p[100];
+
+    getprocess(p, n);   
+    sort(p, n);         
+    printSortedProcesses(p, n); 
+
+    return 0;
+}
