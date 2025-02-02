@@ -1,9 +1,9 @@
 #include <stdio.h>
 
-void findWaitingTime(int processes[], int n, int bt[], int wt[]) {
+void findWaitingTime(int processes[], int n, int bt[], int at[], int wt[]) {
     wt[0] = 0;
     for (int i = 1; i < n; i++) {
-        wt[i] = bt[i - 1] + wt[i - 1];
+        wt[i] = bt[i - 1] + wt[i - 1] - at[i] + at[i - 1];
     }
 }
 
@@ -13,25 +13,25 @@ void findTurnAroundTime(int processes[], int n, int bt[], int wt[], int tat[]) {
     }
 }
 
-void findAvgTime(int processes[], int n, int bt[]) {
+void findAvgTime(int processes[], int n, int bt[], int at[]) {
     int wt[n], tat[n];
-    findWaitingTime(processes, n, bt, wt);
+    findWaitingTime(processes, n, bt, at, wt);
     findTurnAroundTime(processes, n, bt, wt, tat);
 
     int total_wt = 0, total_tat = 0;
-    printf("\nProcess\tBurst Time\tWaiting Time\tTurnaround Time\n");
+    printf("\nProcess\tBurst Time\tArrival Time\tWaiting Time\tTurnaround Time\n");
 
     for (int i = 0; i < n; i++) {
         total_wt += wt[i];
         total_tat += tat[i];
-        printf("%d\t\t%d\t\t%d\t\t%d\n", processes[i], bt[i], wt[i], tat[i]);
+        printf("%d\t\t%d\t\t%d\t\t%d\t\t%d\n", processes[i], bt[i], at[i], wt[i], tat[i]);
     }
 
     printf("\nAverage Waiting Time: %.2f", (float)total_wt / n);
     printf("\nAverage Turnaround Time: %.2f\n", (float)total_tat / n);
 }
 
-void ganttChart(int processes[], int n, int bt[], int wt[]) {
+void ganttChart(int processes[], int n, int bt[], int at[], int wt[]) {
     printf("\nGantt Chart:\n");
     printf("--------------------------------------------------\n");
 
@@ -39,6 +39,11 @@ void ganttChart(int processes[], int n, int bt[], int wt[]) {
         printf("| P%d ", processes[i]);
     }
     printf("|\n");
+
+    int total_time = 0;
+    for (int i = 0; i < n; i++) {
+        total_time += bt[i];
+    }
 
     for (int i = 0; i < n; i++) {
         for (int j = 0; j < bt[i]; j++) {
@@ -57,11 +62,15 @@ void ganttChart(int processes[], int n, int bt[], int wt[]) {
     printf("\n");
 }
 
-void sortProcessesByBurstTime(int processes[], int bt[], int n) {
+void sortProcessesByArrivalTime(int processes[], int bt[], int at[], int n) {
     for (int i = 0; i < n - 1; i++) {
         for (int j = i + 1; j < n; j++) {
-            if (bt[i] > bt[j]) {
-                int temp = bt[i];
+            if (at[i] > at[j]) {
+                int temp = at[i];
+                at[i] = at[j];
+                at[j] = temp;
+
+                temp = bt[i];
                 bt[i] = bt[j];
                 bt[j] = temp;
 
@@ -78,10 +87,16 @@ int main() {
     printf("Enter number of processes: ");
     scanf("%d", &n);
 
-    int processes[n], burst_time[n];
+    int processes[n], burst_time[n], arrival_time[n];
     
     for (int i = 0; i < n; i++) {
         processes[i] = i + 1;
+    }
+
+    printf("Enter arrival times for each process:\n");
+    for (int i = 0; i < n; i++) {
+        printf("Arrival time for P%d: ", processes[i]);
+        scanf("%d", &arrival_time[i]);
     }
 
     printf("Enter burst times for each process:\n");
@@ -90,10 +105,10 @@ int main() {
         scanf("%d", &burst_time[i]);
     }
 
-    sortProcessesByBurstTime(processes, burst_time, n);
+    sortProcessesByArrivalTime(processes, burst_time, arrival_time, n);
 
-    findAvgTime(processes, n, burst_time);
-    ganttChart(processes, n, burst_time, burst_time);
+    findAvgTime(processes, n, burst_time, arrival_time);
+    ganttChart(processes, n, burst_time, arrival_time, burst_time);
 
     return 0;
 }
