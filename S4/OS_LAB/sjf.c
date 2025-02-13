@@ -1,33 +1,25 @@
 #include <stdio.h>
+
 void main() 
 {
-    int p[20], wt[20], bt[20], tt[20], pr[20], n, temp;
+    int p[20], wt[20], bt[20], tt[20], n, temp;
     float wt_avg = 0, tt_avg = 0;
-    
     printf("Enter the number of Processes: ");
     scanf("%d", &n);
-    
-    printf("\nEnter the Burst Time and Priority of Each Process (Highest Number=Highest Priority) :\n");
+    printf("\nEnter the Burst Time of Each Process :\n");
     for (int i = 0; i < n; i++) 
     {
         p[i] = i + 1;
         printf("P%d: ", i + 1);
-        printf("Burst Time: ");
         scanf("%d", &bt[i]);
-        printf("Priority: ");
-        scanf("%d", &pr[i]);
     }
 
     for (int i = 0; i < n - 1; i++) 
     {
         for (int j = i + 1; j < n; j++) 
         {
-            if (pr[i] < pr[j]) 
+            if (bt[i] > bt[j]) 
             {
-                temp = pr[i];
-                pr[i] = pr[j];
-                pr[j] = temp;
-                
                 temp = bt[i];
                 bt[i] = bt[j];
                 bt[j] = temp;
@@ -56,10 +48,10 @@ void main()
 
     tt_avg /= n;
 
-    printf("\nProcess\t\t Burst Time\t\t Priority\t\t Waiting Time\t\t Turnaround Time\n");
+    printf("\nProcess\t\t Burst Time\t\t Waiting Time\t\t Turnaround Time\n");
     for (int i = 0; i < n; i++) 
     {
-        printf("P%d\t\t\t%d\t\t\t%d\t\t\t%d\t\t\t%d\n", p[i], bt[i], pr[i], wt[i], tt[i]);
+        printf("P%d\t\t\t%d\t\t\t%d\t\t\t%d\n", p[i], bt[i], wt[i], tt[i]);
     }
 
     printf("\nGantt Chart:\n\n");
