@@ -1,72 +1,95 @@
 #include <stdio.h>
-void main() {
-    float awt = 0, att = 0;
-    int p[20], prt[20], bt[20], wt[20], tt[20], n, i, j;
-
-    printf("Enter the number of processes: ");
+void main() 
+{
+    int p[20], wt[20], bt[20], tt[20], pr[20], n, temp;
+    float wt_avg = 0, tt_avg = 0;
+    
+    printf("Enter the number of Processes: ");
     scanf("%d", &n);
-
-    printf("Enter the burst time of processes and priority (Higher priority number = Highest priority):\n");
-    for (i = 0; i < n; i++) {
-        printf("p%d:\n", i + 1);
-        p[i] = i + 1; 
+    
+    printf("\nEnter the Burst Time and Priority of Each Process :\n");
+    for (int i = 0; i < n; i++) 
+    {
+        p[i] = i + 1;
+        printf("P%d: ", i + 1);
         printf("Burst Time: ");
         scanf("%d", &bt[i]);
         printf("Priority: ");
-        scanf("%d", &prt[i]);
+        scanf("%d", &pr[i]);
     }
-    int temp;
-    for (i = 0; i < n - 1; i++) {
-        for (j = i + 1; j < n; j++) {
-            if (prt[i] < prt[j]) {
+
+    for (int i = 0; i < n - 1; i++) 
+    {
+        for (int j = i + 1; j < n; j++) 
+        {
+            if (pr[i] < pr[j]) 
+            {
+                temp = pr[i];
+                pr[i] = pr[j];
+                pr[j] = temp;
                 
                 temp = bt[i];
                 bt[i] = bt[j];
                 bt[j] = temp;
-
+                
                 temp = p[i];
                 p[i] = p[j];
                 p[j] = temp;
-                temp = prt[i];
-                prt[i] = prt[j];
-                prt[j] = temp;
             }
         }
     }
-    wt[0] = 0; 
-    for (i = 1; i < n; i++) {
+
+    wt[0] = 0;
+    for (int i = 1; i < n; i++) 
+    {
         wt[i] = wt[i - 1] + bt[i - 1];
-        awt += wt[i];
+        wt_avg += wt[i];
     }
 
-    awt /= n;  
+    wt_avg /= n;
 
-    
-    for (i = 0; i < n; i++) {
-        tt[i] = bt[i] + wt[i];
-        att += tt[i];
+    for (int i = 0; i < n; i++) 
+    {
+        tt[i] = wt[i] + bt[i];
+        tt_avg += tt[i];
     }
 
-    att /= n;  
+    tt_avg /= n;
 
-    printf("\nAverage Turnaround Time= %.2f\n", att);
-    printf("Average Waiting Time= %.2f\n", awt);
-    printf("------------------------------------------------\n");
-
-    printf("Gantt Chart\n");
-    printf("------------------------------------------------\n");
-    for (i = 0; i < n; i++) {
-        printf("| P%d\t", p[i]);
+    printf("\nProcess\t\t Burst Time\t\t Priority\t\t Waiting Time\t\t Turnaround Time\n");
+    for (int i = 0; i < n; i++) 
+    {
+        printf("P%d\t\t\t%d\t\t\t%d\t\t\t%d\t\t\t%d\n", p[i], bt[i], pr[i], wt[i], tt[i]);
     }
-    printf("|\n");
 
-    printf("-------------------------------------------------\n");
-
-    printf("0\t");
-    for (i = 0; i < n; i++) {
-        printf("%d\t", tt[i]);
+    printf("\nGantt Chart:\n\n");
+    printf("----");
+    for (int i = 0; i < n; i++) 
+    {
+        printf("-------");
     }
     printf("\n");
-    printf("-------------------------------------------------\n");
+    for (int i = 0; i < n; i++) 
+    {
+        printf("|  P%d  ", p[i]);
+    }
+    printf("|\n");
+    printf("----");
+    for (int i = 0; i < n; i++) {
+        printf("-------");
+    }
+    printf("\n");
+    for (int i = 0; i < n; i++) 
+    {
+        printf("%d      ", wt[i]);
+    }
+    printf("%d", tt[n - 1]);
+    printf("\n");
+    printf("----");
+    for (int i = 0; i < n; i++) {
+        printf("-------");
+    }
+    printf("\n");
+    printf("Average tt = %f \n", tt_avg);
+    printf("Average wt = %f\n", wt_avg);
 }
-
