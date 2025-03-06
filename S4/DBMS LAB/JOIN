@@ -1,0 +1,175 @@
+student@ml-17:~$ mysql -u root -p
+Enter password: 
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 10
+Server version: 8.0.41-0ubuntu0.22.04.1 (Ubuntu)
+
+Copyright (c) 2000, 2025, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> CREATE DATABASE Ashna;
+Query OK, 1 row affected (0.01 sec)
+
+mysql> use Ashna;
+Database changed
+mysql> CREATE TABLE departments(department_id INT PRIMARY KEY,department_name VARCHAR(100));
+Query OK, 0 rows affected (0.04 sec)
+
+mysql> CREATE TABLE employees(employee_id INT PRIMARY KEY,name VARCHAR(100),department_id INT);
+Query OK, 0 rows affected (0.05 sec)
+
+mysql> INSERT INTO departments values(100,'HR');
+Query OK, 1 row affected (0.03 sec)
+
+mysql> INSERT INTO departments values(101,'DESIGN');
+Query OK, 1 row affected (0.02 sec)
+
+mysql> INSERT INTO departments values(102,'FINANCE');
+Query OK, 1 row affected (0.02 sec)
+
+mysql> INSERT INTO departments values(103,'HR');
+Query OK, 1 row affected (0.02 sec)
+
+mysql> INSERT INTO departments values(104,'MANAGMENT');
+Query OK, 1 row affected (0.02 sec)
+
+mysql> INSERT INTO employees values(200,'Ashna',100);
+Query OK, 1 row affected (0.02 sec)
+
+mysql> INSERT INTO employees values(201,'Devika',101);
+Query OK, 1 row affected (0.03 sec)
+
+mysql> INSERT INTO employees values(202,'Pavithra',102);
+Query OK, 1 row affected (0.02 sec)
+
+mysql> INSERT INTO employees values(203,'Arjun',103);
+Query OK, 1 row affected (0.02 sec)
+
+mysql> INSERT INTO employees values(204,'Roshan',104);
+Query OK, 1 row affected (0.03 sec)
+
+mysql> SELECT * from departments;
++---------------+-----------------+
+| department_id | department_name |
++---------------+-----------------+
+|           100 | HR              |
+|           101 | DESIGN          |
+|           102 | FINANCE         |
+|           103 | HR              |
+|           104 | MANAGMENT       |
++---------------+-----------------+
+5 rows in set (0.01 sec)
+
+mysql> SELECT * from employees;
++-------------+----------+---------------+
+| employee_id | name     | department_id |
++-------------+----------+---------------+
+|         200 | Ashna    |           100 |
+|         201 | Devika   |           101 |
+|         202 | Pavithra |           102 |
+|         203 | Arjun    |           103 |
+|         204 | Roshan   |           104 |
++-------------+----------+---------------+
+5 rows in set (0.00 sec)
+
+mysql> ALTER TABLE child_table
+    -> ADD CONSTRAINT fk_constraint_name
+    -> FOREIGN KEY (column_in_child_table)
+    -> REFERENCES parent_table (column_in_parent_table);
+ERROR 1146 (42S02): Table 'Ashna.child_table' doesn't exist
+mysql> ALTER TABLE employees ADD CONSTRAINT foreignkey FOREIGN KEY (department_id) REFERENCES departments (department_id);
+Query OK, 5 rows affected (0.08 sec)
+Records: 5  Duplicates: 0  Warnings: 0
+
+mysql> SELECT e.name,d.department_name FROM employees e INNER JOIN departments d ON e.department_id=d.department_id;
++----------+-----------------+
+| name     | department_name |
++----------+-----------------+
+| Ashna    | HR              |
+| Devika   | DESIGN          |
+| Pavithra | FINANCE         |
+| Arjun    | HR              |
+| Roshan   | MANAGMENT       |
++----------+-----------------+
+5 rows in set (0.00 sec)
+
+mysql> SELECT name,department_name FROM employees e INNER JOIN departments d ON e.department_id=d.department_id;
++----------+-----------------+
+| name     | department_name |
++----------+-----------------+
+| Ashna    | HR              |
+| Devika   | DESIGN          |
+| Pavithra | FINANCE         |
+| Arjun    | HR              |
+| Roshan   | MANAGMENT       |
++----------+-----------------+
+5 rows in set (0.00 sec)
+
+mysql> SELECT employees.name,departments.department_name FROM employees INNER JOIN departments ON employees.department_id=departments.department_id;
++----------+-----------------+
+| name     | department_name |
++----------+-----------------+
+| Ashna    | HR              |
+| Devika   | DESIGN          |
+| Pavithra | FINANCE         |
+| Arjun    | HR              |
+| Roshan   | MANAGMENT       |
++----------+-----------------+
+5 rows in set (0.00 sec)
+
+mysql> SELECT name,department_name FROM employees INNER JOIN departments ON employees.department_id=departments.department_id;
++----------+-----------------+
+| name     | department_name |
++----------+-----------------+
+| Ashna    | HR              |
+| Devika   | DESIGN          |
+| Pavithra | FINANCE         |
+| Arjun    | HR              |
+| Roshan   | MANAGMENT       |
++----------+-----------------+
+5 rows in set (0.00 sec)
+
+mysql> SELECT employees.name,departments.department_name FROM employees LEFT JOIN departments ON employees.department_id=departments.department_id;
++----------+-----------------+
+| name     | department_name |
++----------+-----------------+
+| Ashna    | HR              |
+| Devika   | DESIGN          |
+| Pavithra | FINANCE         |
+| Arjun    | HR              |
+| Roshan   | MANAGMENT       |
++----------+-----------------+
+5 rows in set (0.00 sec)
+
+mysql> SELECT employees.name,departments.department_name FROM employees RIGHT JOIN departments ON employees.department_id=departments.department_id;
++----------+-----------------+
+| name     | department_name |
++----------+-----------------+
+| Ashna    | HR              |
+| Devika   | DESIGN          |
+| Pavithra | FINANCE         |
+| Arjun    | HR              |
+| Roshan   | MANAGMENT       |
++----------+-----------------+
+5 rows in set (0.00 sec)
+
+mysql> SELECT employees.name,departments.department_name FROM employees RIGHT JOIN departments ON employees.department_id=departments.department_id
+    -> UNION
+    -> SELECT employees.name,departments.department_name FROM employees LEFT JOIN departments ON employees.department_id=departments.department_id;
++----------+-----------------+
+| name     | department_name |
++----------+-----------------+
+| Ashna    | HR              |
+| Devika   | DESIGN          |
+| Pavithra | FINANCE         |
+| Arjun    | HR              |
+| Roshan   | MANAGMENT       |
++----------+-----------------+
+5 rows in set (0.03 sec)
+
+mysql>     
