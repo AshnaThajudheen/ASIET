@@ -1,0 +1,49 @@
+#include <stdio.h>
+
+void worstFit(int blocks[], int m, int processes[], int n) {
+    int allocation[n];
+
+    for (int i = 0; i < n; i++) allocation[i] = -1;
+
+    for (int i = 0; i < n; i++) {
+        int worstIdx = -1;
+        for (int j = 0; j < m; j++) {
+            if (blocks[j] >= processes[i]) {
+                if (worstIdx == -1 || blocks[j] > blocks[worstIdx])
+                    worstIdx = j;
+            }
+        }
+        if (worstIdx != -1) {
+            allocation[i] = worstIdx;
+            blocks[worstIdx] -= processes[i];
+        }
+    }
+
+    printf("\nWorst Fit Allocation:\n");
+    for (int i = 0; i < n; i++)
+        printf("Process %d -> Block %d\n", i + 1, (allocation[i] != -1) ? allocation[i] + 1 : -1);
+}
+
+int main() {
+    int m, n;
+
+    printf("Enter number of memory blocks: ");
+    scanf("%d", &m);
+    int blocks[m];
+
+    printf("Enter sizes of %d memory blocks: ", m);
+    for (int i = 0; i < m; i++)
+        scanf("%d", &blocks[i]);
+
+    printf("Enter number of processes: ");
+    scanf("%d", &n);
+    int processes[n];
+
+    printf("Enter sizes of %d processes: ", n);
+    for (int i = 0; i < n; i++)
+        scanf("%d", &processes[i]);
+
+    worstFit(blocks, m, processes, n);
+
+    return 0;
+}
