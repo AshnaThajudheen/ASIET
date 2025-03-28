@@ -1,0 +1,66 @@
+#include <stdio.h>
+
+void lruPageReplacement(int pages[], int n, int frames) {
+    int queue[frames], recent[frames];
+    int count = 0, pageFaults = 0;
+
+    for (int i = 0; i < n; i++) {
+        int found = 0;
+
+        // Check if the page is in memory
+        for (int j = 0; j < count; j++) {
+            if (queue[j] == pages[i]) {
+                found = 1;
+                recent[j] = i; // Update recent use
+                break;
+            }
+        }
+
+        if (!found) {
+            int replaceIndex = 0, minIndex = i;
+            if (count < frames) {
+                replaceIndex = count++;
+            } else {
+                // Find the least recently used page
+                for (int j = 0; j < frames; j++) {
+                    if (recent[j] < minIndex) {
+                        minIndex = recent[j];
+                        replaceIndex = j;
+                    }
+                }
+            }
+            queue[replaceIndex] = pages[i];
+            recent[replaceIndex] = i;
+            pageFaults++;
+        }
+
+        // Print current queue state
+        printf("Step %d: ", i + 1);
+        for (int j = 0; j < count; j++) {
+            printf("%d ", queue[j]);
+        }
+        printf("\n");
+    }
+
+    printf("Total Page Faults: %d\n", pageFaults);
+}
+
+int main() {
+    int n, frames;
+
+    printf("Enter the number of pages: ");
+    scanf("%d", &n);
+    int pages[n];
+
+    printf("Enter the page reference string: ");
+    for (int i = 0; i < n; i++) {
+        scanf("%d", &pages[i]);
+    }
+
+    printf("Enter the number of frames: ");
+    scanf("%d", &frames);
+
+    lruPageReplacement(pages, n, frames);
+
+    return 0;
+}
