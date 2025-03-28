@@ -1,0 +1,57 @@
+#include <stdio.h>
+
+void fifoPageReplacement(int pages[], int n, int frames) {
+    int queue[frames];
+    int front = 0, count = 0, pageFaults = 0;
+
+    for (int i = 0; i < n; i++) {
+        int found = 0;
+
+        // Check if the page is already in the queue
+        for (int j = 0; j < count; j++) {
+            if (queue[j] == pages[i]) {
+                found = 1;
+                break;
+            }
+        }
+
+        if (!found) { // Page Fault occurs
+            if (count < frames) {
+                queue[count++] = pages[i];
+            } else {
+                queue[front] = pages[i];
+                front = (front + 1) % frames;
+            }
+            pageFaults++;
+        }
+
+        // Print current queue state
+        printf("Step %d: ", i + 1);
+        for (int j = 0; j < count; j++) {
+            printf("%d ", queue[j]);
+        }
+        printf("\n");
+    }
+
+    printf("Total Page Faults: %d\n", pageFaults);
+}
+
+int main() {
+    int n, frames;
+
+    printf("Enter the number of pages: ");
+    scanf("%d", &n);
+    int pages[n];
+
+    printf("Enter the page reference string: ");
+    for (int i = 0; i < n; i++) {
+        scanf("%d", &pages[i]);
+    }
+
+    printf("Enter the number of frames: ");
+    scanf("%d", &frames);
+
+    fifoPageReplacement(pages, n, frames);
+
+    return 0;
+}
