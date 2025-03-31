@@ -1,5 +1,4 @@
 #include <stdio.h>
-
 void firstFit(int blockSize[], int m, int processSize[], int n) {
     int allocation[n];
     for (int i = 0; i < n; i++) 
@@ -23,12 +22,10 @@ void firstFit(int blockSize[], int m, int processSize[], int n) {
             printf("Not Allocated\n");
     }
 }
-
 void bestFit(int blockSize[], int m, int processSize[], int n) {
     int allocation[n];
     for (int i = 0; i < n; i++) 
         allocation[i] = -1;
-
     for (int i = 0; i < n; i++) {
         int bestIdx = -1;
         for (int j = 0; j < m; j++) {
@@ -52,12 +49,10 @@ void bestFit(int blockSize[], int m, int processSize[], int n) {
             printf("Not Allocated\n");
     }
 }
-
 void worstFit(int blockSize[], int m, int processSize[], int n) {
     int allocation[n];
     for (int i = 0; i < n; i++) 
         allocation[i] = -1;
-
     for (int i = 0; i < n; i++) {
         int worstIdx = -1;
         for (int j = 0; j < m; j++) {
@@ -71,7 +66,6 @@ void worstFit(int blockSize[], int m, int processSize[], int n) {
             blockSize[worstIdx] -= processSize[i];
         }
     }
-
     printf("\nProcess No.\tProcess Size\tBlock No.\n");
     for (int i = 0; i < n; i++) {
         printf("%d\t\t%d\t\t", i + 1, processSize[i]);
@@ -81,7 +75,6 @@ void worstFit(int blockSize[], int m, int processSize[], int n) {
             printf("Not Allocated\n");
     }
 }
-
 int main() {
     int m, n, choice;
     printf("Enter number of memory blocks: ");
@@ -97,17 +90,14 @@ int main() {
     printf("Enter sizes of processes: ");
     for (int i = 0; i < n; i++) 
         scanf("%d", &processSize[i]);
-
     do {
         printf("\nMemory Allocation Methods:");
         printf("\n1. First Fit\n2. Best Fit\n3. Worst Fit\n4. Exit");
         printf("\nEnter your choice: ");
         scanf("%d", &choice);
-
         int tempBlockSize[m];
         for (int i = 0; i < m; i++) 
             tempBlockSize[i] = blockSize[i];
-
         switch (choice) {
             case 1: 
                 firstFit(tempBlockSize, m, processSize, n);
@@ -125,6 +115,5 @@ int main() {
                 printf("Invalid choice! Try again.\n");
         }
     } while (choice != 4);
-
     return 0;
 }
